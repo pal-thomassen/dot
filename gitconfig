@@ -1,0 +1,31 @@
+[alias]
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  co = checkout
+  st = status -s
+  ri = rebase -i
+  ca = commit -a
+  cam = commit -a --amend
+  pom = push origin master
+  pog = push origin gh-pages
+  prom = pull --rebase origin master
+  prog = pull --rebase origin gh-pages
+[core]
+  excludesfile = /Users/andyjoslin/.git/.gitignore
+  editor = /usr/bin/vim
+[merge]
+  tool = vimdiff
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
+[color]
+  ui = true
+[web]
+	browser = open
+[push]
+	default = matching
+[user]
+	name = Andrew
+	email = andrewtjoslin@gmail.com
+[init]
+	templatedir = ~/.git_template
