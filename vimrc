@@ -20,15 +20,16 @@ Plug 'kana/vim-fakeclip'
 Plug 'airblade/vim-gitgutter'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
-Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
-if ($TERMINAL_THEME == 'tomorrow-night')
-  colo Tomorrow-Night
+colorscheme solarized
+if ($TERMINAL_DARK == '1')
+  set background=dark
 else
-  colo Tomorrow
+  set background=light
 endif      
 
 :let g:tabular_loaded = 1
@@ -82,7 +83,7 @@ set matchpairs+=>:<
 noremap j gj
 noremap k gk
 
-inoremap hj <Esc>
+inoremap Hh <Esc>
 
 set title
 set ttyfast

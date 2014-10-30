@@ -28,9 +28,9 @@ zstyle ':prezto:load' pmodule \
   'ruby' \
   'rails' \
   'git' \
+  'tmux' \
   'syntax-highlighting' \
   'history-substring-search' \
-  'tmux' \
   'prompt'
 
 zstyle ':prezto:module:syntax-highlighting' highlighters \
@@ -39,11 +39,6 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
   'pattern' \
   'cursor' \
   'root'
-
-zstyle ':prezto:module:syntax-highlighting' styles \
-  'builtin' 'bg=blue' \
-  'command' 'bg=blue' \
-  'function' 'bg=blue'
 
 #
 # Tmux
