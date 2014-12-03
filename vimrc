@@ -11,17 +11,17 @@ Plug 'kien/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/goyo.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim/' }
+Plug 'bling/vim-airline'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
 Plug 'kana/vim-fakeclip'
-Plug 'airblade/vim-gitgutter'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -64,6 +64,8 @@ set wildignore+=*/spec/dummy/*
 set wildignore+=*/tmp/*
 let mapleader=" "
 set nofoldenable    " disable folding
+set colorcolumn=100
+set clipboard=unnamed
 
 set backspace=indent,eol,start
 
@@ -126,11 +128,14 @@ set gdefault
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_html_checkers = []
 let g:syntastic_check_on_open = 1
-let g:syntastic_enable_signs=1
+let g:syntastic_always_populate_loc_list = 1
+" Next and previous error hotkeys
+map <Leader>e :lnext<CR>
+map <Leader>E :lprev<CR>
 
 " Ag
-map <Leader>n :cn<CR>
-map <Leader>N :cN<CR>
+map <Leader>n :w<CR>:cn<CR>
+map <Leader>N :w<CR>:cN<CR>
 map <Leader>s :Ag 
 
 " Ctrl p
@@ -142,6 +147,7 @@ map <Leader>f :CtrlPLine<CR>
 :let g:ctrlp_working_path_mode = 0
 :let g:ctrlp_switch_buffer = 0
 :let g:ctrlp_match_func = {'match': 'matcher#cmatch'}
+:let g:ctrlp_custom_ignore = {'dir': 'dist'}
 
 " Colorizer
 let g:colorizer_auto_filetype='css,html,styl,less'
@@ -176,4 +182,4 @@ endfunction
 let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
 
 " Powerline
-let g:powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1

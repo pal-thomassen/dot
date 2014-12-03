@@ -28,15 +28,16 @@ local focusKeys = {
   a='Safari',
   c='Flowdock',
   d='Google Chrome',
-  f='iTerm',
-  y='Screenhero',
   e='Slack',
+  f='iTerm',
   n='Spotify',
   p='Pandora',
+  r='node-webkit',
   s='iOS Simulator',
   t='Messages',
   u='Numbers',
-  x='Xcode'
+  x='Xcode',
+  y='Screenhero',
 }
 for key in pairs(focusKeys) do
   hotkey.bind(modalKey, key, function()
