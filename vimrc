@@ -122,8 +122,8 @@ filetype off               " -  required!
     map <Leader>w :%s/\s\+$//e<CR>
     
 " - This rewires n and N to do the highlighing...
-    nnoremap <silent> n   n:call HLNext(0.075)<cr>
-    nnoremap <silent> N   N:call HLNext(0.075)<cr>
+    nnoremap <silent> n   n:call HLNext(0.1)<cr>
+    nnoremap <silent> N   N:call HLNext(0.1)<cr>
 " END KEYBINDINGS
 
 " PLUGINCONFIG
