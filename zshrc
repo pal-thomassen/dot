@@ -24,4 +24,3 @@ alias journal=$HOME/dev/ajoslin/journal/journal.sh
 
 # Disable zsh autocorrect
 unsetopt CORRECT
-zstyle ':completion:*:*:git:*' script ~/.git-completion.sh
