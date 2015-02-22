@@ -21,6 +21,7 @@ alias nw=/Applications/node-webkit.app/Contents/MacOS/node-webkit
 
 export JOURNAL_DIR=~/Documents/journal
 alias journal=$HOME/dev/ajoslin/journal/journal.sh
+setopt CLOBBER
 
 # Disable zsh autocorrect
 unsetopt CORRECT

@@ -1,19 +1,19 @@
 #!/bin/sh
 
-echo "-- BREW INSTALL"
-brew update
-brew tap thoughtbot/formulae
-brew install git node tmux vim the_silver_searcher zsh rcm lua luarocks
+# echo "-- BREW INSTALL"
+# brew update
+# brew tap thoughtbot/formulae
+# brew install git node tmux vim the_silver_searcher zsh rcm lua luarocks
 
-echo "-- RCUP"
-cd ~/dot
-cp rcrc ~/.rcrc
-rcup 
+# echo "-- RCUP"
+# cd ~/dot
+# cp rcrc ~/.rcrc
+# rcup 
 
-echo "-- ZSH DEFAULT"
-sudo echo "$(which zsh)" >> /etc/shells
-chsh -s zsh
-zsh
+# echo "-- ZSH DEFAULT"
+# sudo echo "$(which zsh)" >> /etc/shells
+# chsh -s zsh
+# zsh
 
 echo "-- NPM INSTALLS"
 npm install -g gulp karma httpster
