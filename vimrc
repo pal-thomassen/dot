@@ -5,6 +5,7 @@ filetype off               " -  required!
 
 " PLUG
   call plug#begin('~/.vim/plugged')
+  Plug 'leafgarland/typescript-vim'
   Plug 'rking/ag.vim'
   Plug 'chrisbra/color_highlight'
   Plug 'JazzCore/ctrlp-cmatcher'
@@ -13,16 +14,21 @@ filetype off               " -  required!
   Plug 'junegunn/goyo.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'bling/vim-airline'
-  Plug 'kien/rainbow_parentheses.vim'
-  Plug 'ervandew/supertab'
+  Plug 'luochen1990/rainbow'
+  Plug 'Valloric/YouCompleteMe'
+  Plug 'marijnh/tern_for_vim'
   Plug 'scrooloose/syntastic'
   Plug 'tpope/vim-commentary'
   Plug 'kana/vim-fakeclip'
   Plug 'pangloss/vim-javascript'
+  Plug 'jelera/vim-javascript-syntax'
   Plug 'tpope/vim-surround'
   Plug 'altercation/vim-colors-solarized'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'tpope/vim-fugitive'
+  Plug 'mxw/vim-jsx'
+  Plug 'mattn/emmet-vim'
+  Plug 'othree/html5.vim'
   call plug#end()
 " ENDPLUG
 
@@ -91,6 +97,10 @@ filetype off               " -  required!
     set wildignore+=*.rbc,*.scssc,*.sassc
     set wildignore+=*/spec/dummy/*
     set wildignore+=*/tmp/*
+
+" - Autocomplete
+    au CompleteDone * pclose
+    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 " END GENERIC OPTIONS
 
 " KEYBINDINGS
@@ -147,6 +157,9 @@ filetype off               " -  required!
     :let g:ctrlp_match_func = {'match': 'matcher#cmatch'}
     :let g:ctrlp_custom_ignore = {'dir': 'dist'}
 
+" - Emmet.vim
+    " let g:user_emmet_leader_key='<Leader>y'
+
 " - Goyo writing mode
     function! GoyoBefore()
       :syntax off
@@ -162,23 +175,59 @@ filetype off               " -  required!
     endfunction
     let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
 
+" - JSX Highlight
+    let g:jsx_ext_required = 0
+
 " - NERDTree
     :map <Leader>r :NERDTreeToggle<CR>
 
 " - Powerline
     let g:airline_powerline_fonts = 1
-
-" - Rainbow Parentheses
-    let g:rbpt_max = 16
-    let g:rbpt_loadcmd_toggle = 0
-    au VimEnter * RainbowParenthesesToggle
-    au Syntax * RainbowParenthesesLoadRound
-    au Syntax * RainbowParenthesesLoadSquare
-    au Syntax * RainbowParenthesesLoadBraces
+ 
+" - Rainbow
+    let g:rainbow_active = 1
+    let g:rainbow_conf = {
+    \   'guifgs': [
+    \     '#458588',
+    \     '#b16286',
+    \     '#cc241d',
+    \     '#d65d0e',
+    \     '#458588',
+    \     '#b16286',
+    \     '#cc241d',
+    \     '#d65d0e',
+    \     '#458588',
+    \     '#b16286',
+    \     '#cc241d',
+    \     '#d65d0e',
+    \     '#458588',
+    \     '#b16286',
+    \     '#cc241d',
+    \     '#d65d0e'
+    \   ],
+    \   'ctermfgs': [
+    \     'brown',
+    \     'Darkblue',
+    \     'darkgray',
+    \     'darkgreen',
+    \     'darkcyan',
+    \     'darkred',
+    \     'darkmagenta',
+    \     'brown',
+    \     'lightgreen',
+    \     'green',
+    \     'darkmagenta',
+    \     'Darkblue',
+    \     'darkgreen',
+    \     'darkcyan',
+    \     'darkred',
+    \     'red'
+    \   ]
+    \}
 
 " - Syntastic
-    let g:syntastic_javascript_checkers = ['jshint']
     let g:syntastic_html_checkers = []
+    let g:syntastic_javascript_checkers = ['jsxhint']
     let g:syntastic_check_on_open = 1
     let g:syntastic_always_populate_loc_list = 1
 " -  Next and previous error hotkeys
@@ -187,6 +236,9 @@ filetype off               " -  required!
 
 " - tabular
     :let g:tabular_loaded = 1
+
+" - tern
+    map <Leader>g :TernRename<CR>
 " END PLUGINCONFIG
 
 " FUNCTIONS

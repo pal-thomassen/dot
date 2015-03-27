@@ -26,10 +26,10 @@ end)
 
 local focusKeys = {
   a='Safari',
-  c='Strife',
   d='Google Chrome',
   e='Slack',
   f='iTerm',
+  g='Gitter',
   n='Spotify',
   p='Pandora',
   s='iOS Simulator',

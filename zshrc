@@ -13,10 +13,10 @@ function gitdb() {
 export TERMINAL_DARK=1
 export CFLAGS=-Qunused-arguments
 export CPPFLAGS=-Qunused-arguments
-export EDITOR=vi
+export EDITOR=/usr/local/bin/vim
 export RCRC=$HOME/dot/rcrc
 
-alias vi=vim
+alias vi=/usr/local/bin/vim
 alias nw=/Applications/node-webkit.app/Contents/MacOS/node-webkit
 
 export JOURNAL_DIR=~/Documents/journal
@@ -25,3 +25,8 @@ setopt CLOBBER
 
 # Disable zsh autocorrect
 unsetopt CORRECT
+
+ionic-docs() {
+  open http://ionicframework.com/docs/$1/api/
+}
+node-docs() { open https://nodejs.org/docs/v$1/api }

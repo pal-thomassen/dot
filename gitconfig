@@ -5,13 +5,14 @@
   ri = rebase -i
   ca = commit -a
   cam = commit -a --amend
+  camno = commit --amend --no-edit
   pom = push origin master
   pog = push origin gh-pages
   prom = pull --rebase origin master
   prog = pull --rebase origin gh-pages
 [core]
   excludesfile = /Users/andyjoslin/.git/.gitignore
-  editor = /usr/bin/vim
+  editor = /usr/local/bin/vim
 [merge]
   tool = vimdiff
 [diff]
