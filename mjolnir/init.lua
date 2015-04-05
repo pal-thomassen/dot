@@ -35,7 +35,6 @@ local focusKeys = {
   s='iOS Simulator',
   t='Messages',
   u='Numbers',
-  x='Xcode',
   y='Screenhero',
   w='Dictionary'
 }
