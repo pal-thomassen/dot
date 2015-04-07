@@ -1,0 +1,58 @@
+(defun load-init-file (name)
+  (load-file (concat "~/.emacs.d/init/" (symbol-name name) ".el")))
+
+(package-refresh-contents)
+(if (require 'quelpa nil t)
+    (quelpa '(quelpa :repo "quelpa/quelpa" :fetcher github) :upgrade t)
+  (with-temp-buffer
+    (url-insert-file-contents
+     "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+    (eval-buffer)))
+
+(setq quelpa-upgrade-p t)
+
+(mapc 'quelpa '(ac-helm
+                ag
+                auto-complete
+                color-theme-solarized
+                ;solarized-theme
+                evil
+                evil-commentary
+                evil-leader
+                evil-matchit
+                flycheck
+                rainbow-delimiters
+                ;smart-mode-line
+                ))
+
+(mapc 'load-init-file '(bootstrap 
+                        theme))
+
+(setq custom-safe-themes t)
+
+(setq frame-background-mode 'dark)
+(load-theme 'solarized t)
+
+(defun toggle-theme-dark ()
+  (if (eq frame-background-mode 'dark)
+      (setq frame-background-mode 'light)
+      (setq frame-background-mode 'light)
+    (setq frame-background-mode 'dark))
+  (load-theme 'solarized t))
+
+;todo put this in themes
+(setq x-gtk-use-system-tooltips nil)
+
+(setq-default indent-tabs-mode nil)
+(setq tab-stop-list (number-sequence 2 60 2)) ; set all tabstops to 2 spaces
+
+(require 'auto-complete-config)
+(setq ac-auto-start 1)
+(setq ac-auto-show-menu 0.2)
+(global-auto-complete-mode t)
+
+(define-key ac-completing-map (kbd "C-j") 'ac-next)
+(define-key ac-completing-map (kbd "C-k") 'ac-previous)
+
+;kuteymap config
+(define-key evil-normal-state-map (kbd ";") `evil-ex)

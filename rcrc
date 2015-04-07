@@ -1,2 +1,2 @@
 DOTFILES_DIRS="$HOME/dot"
-SYMLINK_DIRS="zprezto powerline-github README.md"
+SYMLINK_DIRS="zprezto powerline-github README.md emacs.d"

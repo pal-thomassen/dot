@@ -1,0 +1,16 @@
+
+; Always immediately load evil mode
+(evil-mode t)
+(global-evil-matchit-mode t)
+
+;; (require 'auto-complete)
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
+(ac-config-default)
+;; (require 'ac-helm)
+
+
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (rainbow-delimiters-mode t)
+            (evil-commentary-mode t)))

@@ -11,7 +11,7 @@
   prom = pull --rebase origin master
   prog = pull --rebase origin gh-pages
 [core]
-  excludesfile = /Users/andyjoslin/.git/.gitignore
+	excludesfile = /Users/andrew/.globalgitignore
   editor = /usr/local/bin/vim
 [merge]
   tool = vimdiff
