@@ -15,9 +15,17 @@
                                        html
                                        emmet
                                        tmux
-                                       git)
+                                       osx
+                                       git
+                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(
+                                    flycheck
+                                    flyspell
+                                    smartparens
+                                    git-gutter
+                                    git-gutter-fringe
+                                    )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -99,7 +107,7 @@ before layers configuration."
    ;; point when it reaches the top or bottom of the screen.
    dotspacemacs-smooth-scrolling t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
-   dotspacemacs-smartparens-strict-mode nil
+   ;; dotspacemacs-smartparens-strict-mode nil
    ;; If non nil advises quit functions to keep server open when quitting.
    dotspacemacs-persistent-server nil
    ;; The default package repository used if no explicit repository has been
@@ -138,17 +146,6 @@ before layers configuration."
   (define-key evil-normal-state-map ";" 'evil-ex)
   (turn-off-smartparens-mode)
 
-  (defun copy-from-osx()
-    (shell-command-to-string "pbpaste"))
-  (defun paste-to-osx (text &optional push)
-    (setq process-connection-type nil)
-    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-      (process-send-string proc text)
-      (process-send-eof proc)))
-
-  (setq interprogram-cut-function 'paste-to-osx)
-  (setq interprogram-paste-function 'copy-from-osx)
-
   (evil-leader/set-key "os" 'helm-google-suggest)
   (evil-leader/set-key "oa" 'helm-apropos)
   (evil-leader/set-key "oo" 'helm-occur)
@@ -171,7 +168,9 @@ before layers configuration."
   (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
 
   (add-hook 'magit-mode-hook 'turn-off-evil-mode)
-
+  (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors t)
+  (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors)
+  (add-hook 'js2-mode (lambda() (global-git-gutter-mode nil)))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
