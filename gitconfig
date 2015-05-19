@@ -12,7 +12,7 @@
   prog = pull --rebase origin gh-pages
 [core]
 	excludesfile = /Users/andrew/.globalgitignore
-  editor = /usr/local/bin/vim
+  editor = vi
 [merge]
   tool = vimdiff
 [diff]
@@ -26,7 +26,7 @@
 [push]
 	default = matching
 [user]
-	name = Andrew
+	name = Andrew Joslin
 	email = andrewtjoslin@gmail.com
 [init]
 	templatedir = ~/.git_template

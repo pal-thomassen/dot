@@ -1,6 +1,12 @@
-;; -*- mode: dotspacemacs -*-
+; -*- mode: dotspacemacs -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
+
+(defun global-set-keys (key def &rest bindings)
+  (while key
+    (global-set-key (kbd key) def)
+    (setq key (pop bindings)
+          def (pop bindings))))
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration."
@@ -10,18 +16,22 @@
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(company-mode
-                                       javascript
-                                       html
-                                       emmet
-                                       tmux
-                                       osx
+   dotspacemacs-configuration-layers '(
+                                       ;emmet
+                                       auto-completion
                                        git
+                                       html
+                                       javascript
+                                       markdown
+                                       osx
+                                       perspectives
+                                       ;; syntax-checking
+                                       themes-megapack
+                                       my-tmux
+                                       ;; tmux
                                        )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
-                                    flycheck
-                                    flyspell
                                     smartparens
                                     git-gutter
                                     git-gutter-fringe
@@ -51,8 +61,10 @@ before layers configuration."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacesmacs-default-theme 'monokai
-   dotspacemacs-themes '(monokai
-                         leuven)
+   dotspacemacs-themes '(
+                         monokai
+                         leuven
+    )
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -84,7 +96,7 @@ before layers configuration."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up.
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup t
+   dotspacemacs-fullscreen-at-startup nil
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX."
    dotspacemacs-fullscreen-use-non-native t
@@ -119,11 +131,25 @@ before layers configuration."
   (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
   (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 
-  (setq org-agenda-files (list "~/Dropbox/org/drifty.org"
-                               "~/Dropbox/org/life.org"
-                               "~/Dropbox/org/self.org"))
+  ; Org Mode
+  (setq org-agenda-files (list "~/org/drifty.org"
+                               "~/org/life.org"
+                               "~/org/self.org"))
+  (global-set-keys
+   "\C-cl" 'org-store-link
+   "\C-cc" 'org-capture
+   "\C-ca" 'org-agenda
+   "\C-cb" 'org-iswitchb
+   )
 
+
+  (setq perspective-enable-persp-projectile t)
   (setq vc-follow-symlinks t)
+
+  ;; gpg encryption
+  (require 'epa-file)
+  (setq epa-file-select-keys 0)
+  (setq epa-file-cache-passphrase-for-symmetric-encryption)
   )
 
 
@@ -134,70 +160,63 @@ before layers configuration."
 (defun dotspacemacs/config ()
   "Configuration function. This function is called at the very end of Spacemacs initialization"
 
+  ; Editing
   (global-hl-line-mode -1) ; Disable current line highlight
   (global-linum-mode t) ; Show line numbers by default
+  (global-auto-revert-mode t)
+  (setq indent-tabs-mode nil)
   (setq-default company-idle-delay 0.05
-               lua-indent-level 2
-               evil-shift-width 2
-               web-mode-markup-indent-offset 2
-               web-mode-css-indent-offset 2
-               web-mode-code-indent-offset 2)
-
-  (define-key evil-normal-state-map ";" 'evil-ex)
+                json-encoding-default-indentation 2
+                lua-indent-level 2
+                evil-shift-width 2
+                web-mode-markup-indent-offset 2
+                web-mode-css-indent-offset 2
+                typescript-indent-level 2
+                css-indent-offset 2
+                web-mode-code-indent-offset 2)
   (turn-off-smartparens-mode)
+  (evil-search-highlight-persist nil)
+  (define-key evil-normal-state-map ";" 'evil-ex)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+  (setq evil-ex-substitute-global 1)
 
+  (global-evil-search-highlight-persist 0)
+  (evil-search-highlight-persist 0)
+
+  ; Custom leader
   (evil-leader/set-key "os" 'helm-google-suggest)
   (evil-leader/set-key "oa" 'helm-apropos)
   (evil-leader/set-key "oo" 'helm-occur)
+  (evil-leader/set-key "op" 'helm-projectile-switch-project)
 
-  (setq indent-tabs-mode nil)
+  ; Helm + Projectile
+  (setq projectile-switch-project-action 'helm-projectile-find-file)
+  (setq projectile-switch-project-action 'helm-projectile)
+  (setq helm-autoresize-mode t)
+  (setq helm-apropos-fuzzy-match t)
+  (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
+  (setq projectile-enable-caching nil)
+  (setq projectile-file-exists-remote-cache-expire (* 10 60))
+
+  ; Js
+  (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors t)
+  (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors)
   (custom-set-variables
     '(js2-basic-offset 2)
     '(js2-bounce-indent-p nil))
 
-  (global-evil-search-highlight-persist nil)
+  (add-hook 'typescript-mode 'flycheck-mode)
 
-  (turn-off-smartparens-mode)
-  (evil-search-highlight-persist nil)
+  (setq flycheck-disabled-checkers '(javascript-jshint))
+  ;(flycheck-add-mode 'javascript-eslint 'js2-mode)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
 
-  (setq projectile-switch-project-action 'helm-projectile-find-file)
-  (setq projectile-switch-project-action 'helm-projectile)
+  (global-set-key (kbd "s-<return>") 'spacemacs/toggle-fullscreen-frame)
 
-  (setq helm-autoresize-mode t)
-  (setq helm-apropos-fuzzy-match t)
-  (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
 
-  (add-hook 'magit-mode-hook 'turn-off-evil-mode)
-  (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors t)
-  (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors)
-  (add-hook 'js2-mode (lambda() (global-git-gutter-mode nil)))
-)
+  (global-unset-key (kbd "C-x 3"))
+  (global-set-key (kbd "C-x 3") 'server-edit)
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ahs-case-fold-search nil)
- '(ahs-default-range (quote ahs-range-whole-buffer))
- '(ahs-idle-interval 0.25)
- '(ahs-idle-timer 0 t)
- '(ahs-inhibit-face-list nil)
- '(custom-safe-themes
-   (quote
-    ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
- '(js2-basic-offset 2)
- '(js2-bounce-indent-p nil)
- '(org-agenda-files
-   (quote
-    ("~/Dropbox/org/drifty.org" "~/Dropbox/org/self.org")))
- '(ring-bell-function (quote ignore) t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))

@@ -34,12 +34,7 @@ filetype off               " -  required!
 
 " COLOR
   set t_Co=256
-  colorscheme solarized
-  if ($TERMINAL_DARK == '1')
-    set background=dark
-  else
-    set background=light
-  endif      
+  colorscheme desert
 " ENDCOLOR
 
 " GENERIC OPTIONS
