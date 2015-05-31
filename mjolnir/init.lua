@@ -4,6 +4,7 @@ local window = require "mjolnir.window"
 local fnutils = require "mjolnir.fnutils"
 
 local modalKey = {"alt"}
+local modalSecondaryKey = {"alt","shift"}
 
 local resizeMappings = {
   h={x=0, y=0, w=0.5, h=1},
@@ -28,12 +29,12 @@ local focusKeys = {
   a='Safari',
   d='Google Chrome',
   e='Slack',
-  f='Terminal',
+  f='iTerm',
   s='Emacs',
-  g='Gitter',
+  g='Mailbox (Beta)',
   n='Spotify',
-  p='Preview',
-  o='iOS Simulator',
+  p='Pivotal Tracker',
+  o='Goofy',
   t='Messages',
   u='Numbers',
   y='Screenhero',

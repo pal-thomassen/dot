@@ -24,11 +24,11 @@
                                        javascript
                                        markdown
                                        osx
-                                       perspectives
-                                       ;; syntax-checking
+                                       (perspectives :variables
+                                                     perspective-enable-persp-projectile t)
                                        themes-megapack
-                                       my-tmux
-                                       ;; tmux
+                                       tmux
+                                       editorconfig
                                        )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
@@ -175,13 +175,16 @@ before layers configuration."
                 css-indent-offset 2
                 web-mode-code-indent-offset 2)
   (turn-off-smartparens-mode)
-  (evil-search-highlight-persist nil)
   (define-key evil-normal-state-map ";" 'evil-ex)
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
   (setq evil-ex-substitute-global 1)
+  (setq web-mode-enable-auto-quoting nil)
 
   (global-evil-search-highlight-persist 0)
   (evil-search-highlight-persist 0)
+
+  ; Magit
+  (add-hook 'magit-mode-hook 'turn-off-evil-mode)
 
   ; Custom leader
   (evil-leader/set-key "os" 'helm-google-suggest)
@@ -201,15 +204,15 @@ before layers configuration."
   ; Js
   (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors t)
   (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors)
-  (custom-set-variables
-    '(js2-basic-offset 2)
-    '(js2-bounce-indent-p nil))
+  ;; (custom-set-variables
+  ;;   '(js2-basic-offset 2)
+  ;;   '(js2-bounce-indent-p nil))
 
   (add-hook 'typescript-mode 'flycheck-mode)
 
-  (setq flycheck-disabled-checkers '(javascript-jshint))
+  ;(setq-default flycheck-disabled-checkers (append flycheck-disabled-checkers '(javascript-jshint)))
   ;(flycheck-add-mode 'javascript-eslint 'js2-mode)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  ;(setq flycheck-check-syntax-automatically '(save mode-enabled))
 
   (global-set-key (kbd "s-<return>") 'spacemacs/toggle-fullscreen-frame)
 

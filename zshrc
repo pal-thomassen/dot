@@ -15,6 +15,7 @@ export CFLAGS=-Qunused-arguments
 export CPPFLAGS=-Qunused-arguments
 export EDITOR='emacsclient -nw'
 export RCRC=$HOME/dot/rcrc
+alias sll=/usr/local/Cellar/sl/5.02/bin/sl
 
 alias e="emacsclient -nw"
 alias vi='e'

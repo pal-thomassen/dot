@@ -12,7 +12,6 @@
   prog = pull --rebase origin gh-pages
 [core]
 	excludesfile = /Users/andrew/.globalgitignore
-  editor = vi
 [merge]
   tool = vimdiff
 [diff]
