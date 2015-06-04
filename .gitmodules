@@ -1,6 +1,3 @@
-[submodule "zprezto"]
-	path = zprezto
-	url = git@github.com:ajoslin/prezto
-[submodule "emacs.d"]
-	path = emacs.d
-	url = git@github.com:ajoslin/spacemacs
+[submodule "z"]
+	path = z
+	url = https://github.com/rupa/z

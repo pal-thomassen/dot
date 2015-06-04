@@ -204,11 +204,13 @@ before layers configuration."
   ; Js
   (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors t)
   (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors)
-  ;; (custom-set-variables
-  ;;   '(js2-basic-offset 2)
-  ;;   '(js2-bounce-indent-p nil))
+  (custom-set-variables
+    '(js2-basic-offset 2))
 
-  (add-hook 'typescript-mode 'flycheck-mode)
+  ; Json
+  (add-hook 'json-mode-hook (lambda()
+    (setq json-reformat:indent-width 2)
+  ))
 
   ;(setq-default flycheck-disabled-checkers (append flycheck-disabled-checkers '(javascript-jshint)))
   ;(flycheck-add-mode 'javascript-eslint 'js2-mode)
@@ -219,6 +221,12 @@ before layers configuration."
 
   (global-unset-key (kbd "C-x 3"))
   (global-set-key (kbd "C-x 3") 'server-edit)
+
+  (defun my-configure-neotree()
+    (define-key neotree-mode-map (kbd "o") (neotree-make-executor :dir-fn 'neo-open-dir))
+    (define-key neotree-mode-map (kbd "C-l") 'windmove-right)
+    )
+  (add-hook 'neotree-mode-hook 'my-configure-neotree)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
