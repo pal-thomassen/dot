@@ -27,14 +27,15 @@ end)
 
 local focusKeys = {
   a='Safari',
+  c='Sketch',
   d='Google Chrome',
   e='Slack',
   f='iTerm',
   s='Emacs',
-  g='Mailbox (Beta)',
+  g='Gmail',
   n='Spotify',
-  p='Pivotal Tracker',
-  o='Goofy',
+  p='Flow',
+  o='Messenger',
   t='Messages',
   u='Numbers',
   y='Screenhero',

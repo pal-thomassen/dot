@@ -1,5 +1,5 @@
 source ~/.zprezto/init.zsh
-source ~/.z/z.sh
+source ~/.config/z/z.sh
 
 # This file contains github tokens etc, and is gitignore'd
 source ~/.tokens
