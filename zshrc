@@ -51,13 +51,10 @@ alias gitd="git daemon --export-all --reuseaddr \
   --informative-errors  --verbose"
 
 export PATH="/usr/local/bin:$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 tic -o ~/.terminfo /Applications/Emacs.app/Contents/Resources/etc/e/eterm-color.ti
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
-
-# Base16 Shell
-BASE16_SHELL="$HOME/dot/config/themes/base16/base16-flat.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL

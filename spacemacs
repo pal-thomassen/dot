@@ -18,7 +18,7 @@
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '(
                                        ;emmet
-                                       auto-completion
+                                       ;; auto-completion
                                        git
                                        html
                                        javascript
@@ -32,6 +32,7 @@
                                        )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
+                                    tern-mode
                                     smartparens
                                     git-gutter
                                     git-gutter-fringe
