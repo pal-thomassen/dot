@@ -11,6 +11,8 @@ function gitdb() {
   git push origin :$1
 }
 
+source ~/dev/make-module/module.sh
+
 export TERMINAL_DARK=1
 export CFLAGS=-Qunused-arguments
 export CPPFLAGS=-Qunused-arguments
@@ -50,7 +52,7 @@ function freeport() {
 alias gitd="git daemon --export-all --reuseaddr \
   --informative-errors  --verbose"
 
-export PATH="/usr/local/bin:$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="/usr/local/bin:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 tic -o ~/.terminfo /Applications/Emacs.app/Contents/Resources/etc/e/eterm-color.ti

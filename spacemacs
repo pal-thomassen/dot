@@ -24,11 +24,11 @@
                                        javascript
                                        markdown
                                        osx
+                                       editorconfig
                                        (perspectives :variables
                                                      perspective-enable-persp-projectile t)
                                        themes-megapack
                                        tmux
-                                       editorconfig
                                        )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
