@@ -9,6 +9,8 @@
           def (pop bindings))))
 
 (defun dotspacemacs/layers ()
+  (setq exec-path-from-shell-arguments '("-l"))
+
   "Configuration Layers declaration."
   (setq-default
    ;; List of additional paths where to look for configuration layers.
@@ -17,25 +19,28 @@
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '(
-                                       ;emmet
+                                       ;; emmet
                                        ;; auto-completion
                                        git
+                                       github
+                                       version-control
                                        html
                                        javascript
-                                       markdown
                                        osx
                                        editorconfig
-                                       (perspectives :variables
-                                                     perspective-enable-persp-projectile t)
-                                       themes-megapack
+                                       ;; eyebrowse
+                                       ;; syntax-checking
+                                       ;; (perspectives :variables
+                                                     ;; perspective-enable-persp-projectile t)
+                                       ;; themes-megapack
                                        tmux
                                        )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
+                                    tern
                                     tern-mode
                                     smartparens
-                                    git-gutter
-                                    git-gutter-fringe
+                                    evil-org-mode
                                     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -64,7 +69,7 @@ before layers configuration."
    dotspacesmacs-default-theme 'monokai
    dotspacemacs-themes '(
                          monokai
-                         leuven
+                         solarized-light
     )
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -97,7 +102,7 @@ before layers configuration."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up.
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX."
    dotspacemacs-fullscreen-use-non-native t
@@ -132,18 +137,6 @@ before layers configuration."
   (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
   (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 
-  ; Org Mode
-  (setq org-agenda-files (list "~/org/drifty.org"
-                               "~/org/life.org"
-                               "~/org/self.org"))
-  (global-set-keys
-   "\C-cl" 'org-store-link
-   "\C-cc" 'org-capture
-   "\C-ca" 'org-agenda
-   "\C-cb" 'org-iswitchb
-   )
-
-
   (setq perspective-enable-persp-projectile t)
   (setq vc-follow-symlinks t)
 
@@ -151,6 +144,7 @@ before layers configuration."
   (require 'epa-file)
   (setq epa-file-select-keys 0)
   (setq epa-file-cache-passphrase-for-symmetric-encryption)
+  (setq ns-use-native-fullscreen nil)
   )
 
 
@@ -186,12 +180,12 @@ before layers configuration."
 
   ; Magit
   (add-hook 'magit-mode-hook 'turn-off-evil-mode)
+  (add-hook 'org-mode-hook 'turn-off-evil-mode)
 
   ; Custom leader
   (evil-leader/set-key "os" 'helm-google-suggest)
   (evil-leader/set-key "oa" 'helm-apropos)
   (evil-leader/set-key "oo" 'helm-occur)
-  (evil-leader/set-key "op" 'helm-projectile-switch-project)
 
   ; Helm + Projectile
   (setq projectile-switch-project-action 'helm-projectile-find-file)
@@ -203,8 +197,8 @@ before layers configuration."
   (setq projectile-file-exists-remote-cache-expire (* 10 60))
 
   ; Js
-  (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors t)
-  (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors)
+  ;; (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors t)
+  ;; (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors)
   (custom-set-variables
     '(js2-basic-offset 2))
 
@@ -215,10 +209,9 @@ before layers configuration."
 
   ;(setq-default flycheck-disabled-checkers (append flycheck-disabled-checkers '(javascript-jshint)))
   ;(flycheck-add-mode 'javascript-eslint 'js2-mode)
-  ;(setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
 
   (global-set-key (kbd "s-<return>") 'spacemacs/toggle-fullscreen-frame)
-
 
   (global-unset-key (kbd "C-x 3"))
   (global-set-key (kbd "C-x 3") 'server-edit)
