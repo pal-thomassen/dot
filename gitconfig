@@ -13,8 +13,8 @@
 [core]
 	excludesfile = /Users/andrew/.globalgitignore
   editor = vim
-[merge]
-  tool = vimdiff
+[mergetool]
+  keepBackup = false
 [diff]
   tool = vimdiff
 [difftool]

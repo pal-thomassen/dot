@@ -5,7 +5,6 @@ filetype off               " -  required!
 
 " PLUG
   call plug#begin('~/.vim/plugged')
-  Plug 'leafgarland/typescript-vim'
   Plug 'rking/ag.vim'
   Plug 'chrisbra/color_highlight'
   Plug 'JazzCore/ctrlp-cmatcher'
@@ -15,7 +14,6 @@ filetype off               " -  required!
   Plug 'scrooloose/nerdtree'
   Plug 'bling/vim-airline'
   Plug 'luochen1990/rainbow'
-  Plug 'Valloric/YouCompleteMe'
   Plug 'marijnh/tern_for_vim'
   Plug 'scrooloose/syntastic'
   Plug 'tpope/vim-commentary'
@@ -92,11 +90,6 @@ filetype off               " -  required!
     set wildignore+=*.rbc,*.scssc,*.sassc
     set wildignore+=*/spec/dummy/*
     set wildignore+=*/tmp/*
-
-" - Autocomplete
-    au CompleteDone * pclose
-    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-" END GENERIC OPTIONS
 
 " KEYBINDINGS
     let mapleader=" "
