@@ -12,7 +12,7 @@
   prog = pull --rebase origin gh-pages
   log-file = log -p -M --follow --stat --
 [core]
-	excludesfile = /Users/andrew/.globalgitignore
+	excludesfile = ~/.globalgitignore
   editor = vim
   pager = "diff-highlight | diff-so-fancy | less --tabs=1,5 -R"
 [mergetool]
@@ -30,5 +30,3 @@
 [user]
 	name = Andrew Joslin
 	email = andrewtjoslin@gmail.com
-[init]
-	templatedir = ~/.git_template
