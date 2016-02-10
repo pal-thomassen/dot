@@ -1,9 +1,6 @@
 [submodule "z"]
 	path = config/z
 	url = https://github.com/rupa/z
-[submodule "emacs.d"]
-	path = emacs.d
-	url = https://github.com/ajoslin/spacemacs
 [submodule "zprezto"]
 	path = zprezto
 	url = https://github.com/ajoslin/prezto
