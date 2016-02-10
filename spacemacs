@@ -22,7 +22,7 @@
                                        ;; emmet
                                        terraform
                                        csharp
-                                       ;; gnus
+                                       gnus
                                        ;; auto-completion
                                        git
                                        github
@@ -30,7 +30,7 @@
                                        javascript
                                        osx
                                        editorconfig
-                                       spell-checking
+                                       ;; spell-checking
                                        ;; eyebrowse
                                        ;; syntax-checking
                                        ;; (perspectives :variables
@@ -148,6 +148,11 @@ before layers configuration."
   (setq epa-file-select-keys 0)
   (setq epa-file-cache-passphrase-for-symmetric-encryption)
   (setq ns-use-native-fullscreen nil)
+
+  ;disable backup
+  (setq backup-inhibited t)
+  ;disable auto save
+  (setq auto-save-default nil)
   )
 
 

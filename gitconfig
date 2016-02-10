@@ -10,9 +10,11 @@
   pog = push origin gh-pages
   prom = pull --rebase origin master
   prog = pull --rebase origin gh-pages
+  log-file = log -p -M --follow --stat --
 [core]
 	excludesfile = /Users/andrew/.globalgitignore
   editor = vim
+  pager = "diff-highlight | diff-so-fancy | less --tabs=1,5 -R"
 [mergetool]
   keepBackup = false
 [diff]
