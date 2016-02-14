@@ -2,3 +2,5 @@
 .DS_Store
 npm-debug.log
 .divshot-cache
+.#*
+dump.rdb

@@ -23,7 +23,7 @@
                                        terraform
                                        csharp
                                        gnus
-                                       ;; auto-completion
+                                       auto-completion
                                        git
                                        github
                                        html
