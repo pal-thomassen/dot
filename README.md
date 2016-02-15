@@ -15,3 +15,4 @@ There's also vim in there, for old times' sake.
 # Don't forget
 
 - `git submodule update --init --recursive`
+- `<prefix>I` to install tmux plugins
