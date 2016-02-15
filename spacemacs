@@ -34,7 +34,7 @@
                                        ;; eyebrowse
                                        ;; syntax-checking
                                        ;; (perspectives :variables
-                                                     ;; perspective-enable-persp-projectile t)
+                                       ;; perspective-enable-persp-projectile t)
                                        ;; themes-megapack
                                        tmux
                                        )
@@ -73,7 +73,7 @@ before layers configuration."
    dotspacemacs-themes '(
                          monokai
                          solarized-light
-    )
+                         )
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -136,7 +136,7 @@ before layers configuration."
    ;; Not used for now.
    dotspacemacs-default-package-repository nil)
 
-;; User initialization goes here
+  ;; User initialization goes here
   (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
   (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 
@@ -149,10 +149,14 @@ before layers configuration."
   (setq epa-file-cache-passphrase-for-symmetric-encryption)
   (setq ns-use-native-fullscreen nil)
 
-  ;disable backup
-  (setq backup-inhibited t)
-  ;disable auto save
-  (setq auto-save-default nil)
+                                        ;disable backup
+  (setq
+   backup-directory-alist '(("." . "~/.saves"))
+   backup-by-copying t
+   delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   version-control t)
   )
 
 
@@ -164,7 +168,7 @@ before layers configuration."
   "Configuration function. This function is called at the very end of Spacemacs initialization"
   (spacemacs/toggle-mode-line-version-control-off)
 
-  ; Editing
+                                        ; Editing
   (global-hl-line-mode -1) ; Disable current line highlight
   (global-linum-mode t) ; Show line numbers by default
   (global-auto-revert-mode t)
@@ -189,16 +193,16 @@ before layers configuration."
 
   (setq paradox-github-token (getenv "GH_TOKEN"))
 
-  ; Magit
+                                        ; Magit
   (add-hook 'magit-mode-hook 'turn-off-evil-mode)
   (add-hook 'org-mode-hook 'turn-off-evil-mode)
 
-  ; Custom leader
+                                        ; Custom leader
   (evil-leader/set-key "os" 'helm-google-suggest)
   (evil-leader/set-key "oa" 'helm-apropos)
   (evil-leader/set-key "oo" 'helm-occur)
 
-  ; Helm + Projectile
+                                        ; Helm + Projectile
   (setq projectile-switch-project-action 'helm-projectile-find-file)
   (setq projectile-switch-project-action 'helm-projectile)
   (setq helm-autoresize-mode t)
@@ -207,19 +211,19 @@ before layers configuration."
   (setq projectile-enable-caching nil)
   (setq projectile-file-exists-remote-cache-expire (* 10 60))
 
-  ; Js
+                                        ; Js
   ;; (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors t)
   ;; (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors)
   (custom-set-variables
-    '(js2-basic-offset 2))
+   '(js2-basic-offset 2))
 
-  ; Json
+                                        ; Json
   (add-hook 'json-mode-hook (lambda()
-    (setq json-reformat:indent-width 2)
-  ))
+                              (setq json-reformat:indent-width 2)
+                              ))
 
-  ;(setq-default flycheck-disabled-checkers (append flycheck-disabled-checkers '(javascript-jshint)))
-  ;(flycheck-add-mode 'javascript-eslint 'js2-mode)
+                                        ;(setq-default flycheck-disabled-checkers (append flycheck-disabled-checkers '(javascript-jshint)))
+                                        ;(flycheck-add-mode 'javascript-eslint 'js2-mode)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
 
   (global-set-key (kbd "s-<return>") 'spacemacs/toggle-fullscreen-frame)
