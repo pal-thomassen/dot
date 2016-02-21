@@ -30,12 +30,6 @@
                                        javascript
                                        osx
                                        editorconfig
-                                       ;; spell-checking
-                                       ;; eyebrowse
-                                       ;; syntax-checking
-                                       ;; (perspectives :variables
-                                       ;; perspective-enable-persp-projectile t)
-                                       ;; themes-megapack
                                        tmux
                                        )
    ;; A list of packages and/or extensions that will not be install and loaded.
