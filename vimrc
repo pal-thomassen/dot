@@ -67,7 +67,7 @@ filetype off               " -  required!
     set scrolloff=3
     set matchpairs+=>:<
     set gdefault "global replace
-   
+
 " - mouse support
     set ttymouse=xterm2
     set mouse=a
@@ -94,8 +94,6 @@ filetype off               " -  required!
 " KEYBINDINGS
     let mapleader=" "
     set backspace=indent,eol,start
-
-" - Count inside an html tag as a pair eg <span>hello</span>
     noremap ; :
 
 " - jump more naturally between wrapped lines
@@ -115,10 +113,10 @@ filetype off               " -  required!
 
 " - Source vimrc
     map <C-E> :so ~/.vimrc<CR>
-    
-" - Remove trailing whitespace 
+
+" - Remove trailing whitespace
     map <Leader>w :%s/\s\+$//e<CR>
-    
+
 " - This rewires n and N to do the highlighing...
     nnoremap <silent> n   n:call HLNext(0.1)<cr>
     nnoremap <silent> N   N:call HLNext(0.1)<cr>
@@ -128,7 +126,7 @@ filetype off               " -  required!
 " - Ag
     map <Leader>n :w<CR>:cn<CR>
     map <Leader>N :w<CR>:cN<CR>
-    map <Leader>s :Ag 
+    map <Leader>s :Ag
 
 " - Colorizer
     let g:colorizer_auto_filetype='css,html,styl,less,scss'
@@ -171,7 +169,7 @@ filetype off               " -  required!
 
 " - Powerline
     let g:airline_powerline_fonts = 1
- 
+
 " - Rainbow
     let g:rainbow_active = 1
     let g:rainbow_conf = {
