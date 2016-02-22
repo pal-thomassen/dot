@@ -36,6 +36,7 @@ local focusKeys = {
   d='Google Chrome',
   e='Slack',
   f='iTerm',
+  b='iTunes',
   n='Spotify',
   o='Messenger',
   p='Flow',
