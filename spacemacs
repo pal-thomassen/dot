@@ -130,20 +130,13 @@ before layers configuration."
    ;; Not used for now.
    dotspacemacs-default-package-repository nil)
 
-  ;; User initialization goes here
-  (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-  (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-
-  (setq perspective-enable-persp-projectile t)
   (setq vc-follow-symlinks t)
 
   ;; gpg encryption
   (require 'epa-file)
   (setq epa-file-select-keys 0)
   (setq epa-file-cache-passphrase-for-symmetric-encryption)
-  (setq ns-use-native-fullscreen nil)
 
-                                        ;disable backup
   (setq
    backup-directory-alist '(("." . "~/.saves"))
    backup-by-copying t
@@ -162,12 +155,12 @@ before layers configuration."
   "Configuration function. This function is called at the very end of Spacemacs initialization"
   (spacemacs/toggle-mode-line-version-control-off)
 
-                                        ; Editing
+  ; Editing
   (global-hl-line-mode -1) ; Disable current line highlight
   (global-linum-mode t) ; Show line numbers by default
   (global-auto-revert-mode t)
   (setq indent-tabs-mode nil)
-  (setq-default company-idle-delay 0.05
+  (setq company-idle-delay 0.05
                 json-encoding-default-indentation 2
                 lua-indent-level 2
                 evil-shift-width 2
@@ -175,6 +168,9 @@ before layers configuration."
                 web-mode-css-indent-offset 2
                 typescript-indent-level 2
                 css-indent-offset 2
+                js-indent-level 2
+                js2-basic-offset 2
+                json-reformat:indent-width 2
                 web-mode-code-indent-offset 2)
   (turn-off-smartparens-mode)
   (define-key evil-normal-state-map ";" 'evil-ex)
@@ -182,21 +178,17 @@ before layers configuration."
   (setq evil-ex-substitute-global 1)
   (setq web-mode-enable-auto-quoting nil)
 
-  (global-evil-search-highlight-persist 0)
+  (global-evil-search-highlight-persist)
   (evil-search-highlight-persist 0)
+  (turn-off-search-highlight-persist)
 
-  (setq paradox-github-token (getenv "GH_TOKEN"))
-
-                                        ; Magit
-  (add-hook 'magit-mode-hook 'turn-off-evil-mode)
-  (add-hook 'org-mode-hook 'turn-off-evil-mode)
-
-                                        ; Custom leader
+  ; Custom leader
+  (evil-leader/set-key "oe" 'eval-region)
   (evil-leader/set-key "os" 'helm-google-suggest)
   (evil-leader/set-key "oa" 'helm-apropos)
   (evil-leader/set-key "oo" 'helm-occur)
 
-                                        ; Helm + Projectile
+  ; Helm
   (setq projectile-switch-project-action 'helm-projectile-find-file)
   (setq projectile-switch-project-action 'helm-projectile)
   (setq helm-autoresize-mode t)
@@ -205,25 +197,8 @@ before layers configuration."
   (setq projectile-enable-caching nil)
   (setq projectile-file-exists-remote-cache-expire (* 10 60))
 
-                                        ; Js
-  ;; (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors t)
-  ;; (add-hook 'js2-mode 'js2-mode-hide-warnings-and-errors)
-  (custom-set-variables
-   '(js2-basic-offset 2))
-
-                                        ; Json
-  (add-hook 'json-mode-hook (lambda()
-                              (setq json-reformat:indent-width 2)
-                              ))
-
-                                        ;(setq-default flycheck-disabled-checkers (append flycheck-disabled-checkers '(javascript-jshint)))
-                                        ;(flycheck-add-mode 'javascript-eslint 'js2-mode)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-
-  (global-set-key (kbd "s-<return>") 'spacemacs/toggle-fullscreen-frame)
-
-  (global-unset-key (kbd "C-x 3"))
-  (global-set-key (kbd "C-x 3") 'server-edit)
+  (define-key helm-find-files-map (kbd "C-r") 'helm-ff-run-rename-file)
+  (define-key helm-find-files-map (kbd "C-d") 'helm-ff-run-persistent-delete)
 
   (defun my-configure-neotree()
     (define-key neotree-mode-map (kbd "o") (neotree-make-executor :dir-fn 'neo-open-dir))
