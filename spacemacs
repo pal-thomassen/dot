@@ -30,6 +30,7 @@
                                        javascript
                                        osx
                                        tmux
+                                       ;; react
                                        )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
@@ -177,6 +178,13 @@ before layers configuration."
   (setq evil-ex-substitute-global 1)
   (setq web-mode-enable-auto-quoting nil)
 
+  (setq create-lockfiles nil)
+
+  (with-eval-after-load 'web-mode
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+
   (global-evil-search-highlight-persist)
   (evil-search-highlight-persist 0)
   (turn-off-search-highlight-persist)
@@ -186,6 +194,7 @@ before layers configuration."
   (evil-leader/set-key "os" 'helm-google-suggest)
   (evil-leader/set-key "oa" 'helm-apropos)
   (evil-leader/set-key "oo" 'helm-occur)
+  (evil-leader/set-key "oo" 'js2-mode-hide-warnings-and-errors)
 
   ; Helm
   (setq projectile-switch-project-action 'helm-projectile-find-file)
