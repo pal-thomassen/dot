@@ -29,7 +29,6 @@
                                        html
                                        javascript
                                        osx
-                                       editorconfig
                                        tmux
                                        )
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -72,7 +71,7 @@ before layers configuration."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro for Powerline"
+   dotspacemacs-default-font '("Sauce Code Powerline Font"
                                :size 14
                                :weight light
                                :width normal
