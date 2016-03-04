@@ -18,7 +18,7 @@ export AWS_REGION=us-west-2
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export PATH="$HOME/.bin:/usr/local/bin:$HOME/terraform:$GOPATH/bin:$PATH"
-export ANDROID_HOME="$HOME/Documents/android-sdk-macosx"
+export ANDROID_HOME=/usr/local/opt/android-sdk
 
 alias subl="/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text"
 alias vi="emacsclient -nw"
