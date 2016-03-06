@@ -2,4 +2,4 @@
 
 ## Submodules
 
-`git submodule foreach git pull origin master`
+git submodule foreach git pull origin $(git symbolic-ref --short HEAD) --recurse-submodules
