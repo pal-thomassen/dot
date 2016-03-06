@@ -27,6 +27,7 @@ alias sll=/usr/local/Cellar/sl/5.02/bin/sl
 alias ajpex="apex --profile andrewtjoslin"
 alias ezpex="apex --profile eaze"
 alias gitd="git daemon --export-all --reuseaddr --informative-errors  --verbose"
+alias clocker="HOME=~/Dropbox clocker"
 
 setopt CLOBBER
 # Disable zsh autocorrect
