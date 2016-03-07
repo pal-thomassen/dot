@@ -34,7 +34,7 @@ setopt CLOBBER
 unsetopt CORRECT
 
 # added by travis gem
-[ -f /Users/andrew/.travis/travis.sh ] && source /Users/andrew/.travis/travis.sh
+[ -f $HOME/.travis/travis.sh ] && source /Users/andrew/.travis/travis.sh
 
 # This file is not in source control
-source ~/.tokens
+[ -f $HOME/.tokens ] && source ~/.tokens
