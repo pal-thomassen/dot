@@ -6,4 +6,4 @@ else
   DATE=$1
 fi
 
-$EDITOR $HOME/journal/$DATE.txt
+$EDITOR $HOME/journal/$DATE.gpg
