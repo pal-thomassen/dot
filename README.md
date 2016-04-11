@@ -5,7 +5,7 @@
 1. [tmux](http://tmux.sourceforge.net/) for terminal multiplexing.
 1. [prezto](https://github.com/sorin-ionescu/prezto) because it's simpler and allegedly faster than oh-my-zsh.
 1. [rcm](https://github.com/thoughtbot/rcm#installation) to manage dotfiles.
-1. [mjolnir](https://github.com/sdegutis/mjolnir) for window switching hotkeys.
+1. [hammerspoon](http://hammerspoon.org) for window switching hotkeys.
 1. [ag](https://github.com/ggreer/the_silver_searcher) for fast file searching.
 1. emacs (`brew install emacs`)
 2. git
