@@ -17,13 +17,13 @@ export GOPATH=$HOME/gocode
 export AWS_REGION=us-west-2
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export PATH="$HOME/.bin:/usr/local/bin:/opt/local/bin:$HOME/terraform:$GOPATH/bin:$PATH"
+export PATH="$HOME/.bin:/usr/local/bin:/opt/local/bin:$HOME/terraform:$GOPATH/bin:/usr/local/Cellar/logstash/2.3.2/bin:$PATH"
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
 # GPG
 # Remember to add `use-agent` to `~/.gnupg/gpg.conf`
-export GPG_TTY=$(tty)
-eval $(gpg-agent --daemon --sh)
+# export GPG_TTY=$(tty)
+# eval $(gpg-agent --daemon --sh)
 
 alias subl="/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text"
 alias vi="emacsclient -nw"

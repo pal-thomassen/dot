@@ -19,10 +19,10 @@
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '(
-                                       ;; emmet
+                                       emmet
                                        terraform
-                                       csharp
-                                       gnus
+                                       ;; csharp
+                                       ;; gnus
                                        auto-completion
                                        git
                                        github
@@ -32,6 +32,7 @@
                                        tmux
                                        react
                                        typescript
+                                       themes-megapack
                                        )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(
@@ -64,20 +65,13 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacesmacs-default-theme 'monokai
+   dotspacesmacs-default-theme 'smyx
    dotspacemacs-themes '(
-                         monokai
+                         smyx
                          solarized-light
-                         )
+    )
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
-   ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
-   ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Sauce Code Powerline Font"
-                               :size 14
-                               :weight light
-                               :width normal
-                               :powerline-scale 1.25)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; Major mode leader key is a shortcut key which is the equivalent of
@@ -197,7 +191,9 @@ before layers configuration."
   (evil-leader/set-key "oo" 'helm-occur)
   (evil-leader/set-key "oo" 'js2-mode-hide-warnings-and-errors)
 
+
   ; Helm
+  (require 'helm)
   (setq projectile-switch-project-action 'helm-projectile-find-file)
   (setq projectile-switch-project-action 'helm-projectile)
   (setq helm-autoresize-mode t)
@@ -207,7 +203,7 @@ before layers configuration."
   (setq projectile-file-exists-remote-cache-expire (* 10 60))
 
   (define-key helm-find-files-map (kbd "C-r") 'helm-ff-run-rename-file)
-  (define-key helm-find-files-map (kbd "C-d") 'helm-ff-run-persistent-delete)
+  (define-key helm-find-files-map (kbd "C-d") 'helm-ff-run-delete-file)
 
   (defun my-configure-neotree()
     (define-key neotree-mode-map (kbd "o") (neotree-make-executor :dir-fn 'neo-open-dir))

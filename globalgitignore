@@ -4,3 +4,4 @@ npm-debug.log
 .divshot-cache
 .#*
 dump.rdb
+rethinkdb_data

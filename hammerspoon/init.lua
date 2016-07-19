@@ -38,13 +38,15 @@ local focusKeys = {
   n='Spotify',
   o='Messenger',
   p='Flow',
+  s='Simulator',
   q='Screenhero',
-  r='Remember The Milk',
+  r='Brave',
   s='Simulator',
   t='Messages',
-  v='Evernote',
+  v='Nylas N1',
   w='Dictionary',
-  x='Xcode'
+  x='Xcode',
+  z='Factory'
 }
 
 for key in pairs(focusKeys) do
