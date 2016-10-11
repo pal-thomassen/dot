@@ -11,13 +11,13 @@ export NAME="Andrew Joslin"
 export TERM=xterm-256color
 export CFLAGS=-Qunused-arguments
 export CPPFLAGS=-Qunused-arguments
-export EDITOR='emacsclient -nw'
+export EDITOR=vim
 export RCRC=$HOME/dot/rcrc
 export GOPATH=$HOME/gocode
 export AWS_REGION=us-west-2
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export PATH="$HOME/.bin:/usr/local/bin:/opt/local/bin:$HOME/terraform:$GOPATH/bin:/usr/local/Cellar/logstash/2.3.2/bin:$PATH"
+export PATH="$HOME/.bin:/usr/local/bin:/opt/local/bin:$HOME/terraform:$GOPATH/bin:/usr/local/Cellar/logstash/2.3.2/bin:$PATH:$HOME/.rvm/bin"
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
 # GPG
@@ -33,7 +33,7 @@ alias ajpex="apex --profile andrewtjoslin"
 alias ezpex="apex --profile eaze"
 alias gitd='git daemon --base-path=. --export-all --enable=receive-pack --reuseaddr --informative-errors --verbose'
 
-alias clocker="HOME=~/Dropbox clocker"
+alias clocker="HOME=~/sync/andrew clocker"
 
 setopt CLOBBER
 # Disable zsh autocorrect
@@ -44,3 +44,5 @@ unsetopt CORRECT
 
 # This file is not in source control
 [ -f $HOME/.tokens ] && source ~/.tokens
+
+export PATH="$HOME/.yarn/bin:$PATH"
