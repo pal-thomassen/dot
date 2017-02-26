@@ -151,13 +151,13 @@ filetype off               " -  required!
       :syntax off
       :set linebreak
       :set nojoinspaces
-      :set spell
+      " :set spell
     endfunction
     function! GoyoAfter()
       :syntax on
       :set nolinebreak
       :set joinspaces
-      :set nospell
+      " :set nospell
     endfunction
     let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
 

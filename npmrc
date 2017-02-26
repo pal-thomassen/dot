@@ -1,2 +1,7 @@
 progress=true
 save-prefix=~
+//registry.npmjs.org/:_authToken=c9499972-5be5-42eb-b75c-483046aea8cb
+init.author.name=Andrew Joslin
+init.author.email=andrewtjoslin@gmail.com
+init.author.github=ajoslin
+init.author.url=ajoslin.com

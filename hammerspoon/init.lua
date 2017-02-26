@@ -1,5 +1,4 @@
-local modalKey = {"alt","ctrl"}
-local secondaryModalKey = {"alt","shift"}
+local modalKey = {"alt","ctrl","shift"}
 
 hs.window.animationDuration = 0.1
 
@@ -10,22 +9,11 @@ local resizeMappings = {
   l=hs.layout.right50,
   m={x=0, y=0, w=1, h=1}
 }
-local subtleResizeMappings = {
-  h={x=0.1, y=0.1, w=0.4, h=0.8},
-  j={x=0.1, y=0.5, w=0.8, h=0.4},
-  k={x=0.1, y=0.1, w=0.8, h=0.4},
-  l={x=0.5, y=0.1, w=0.4, h=0.8},
-  m={x=0.1, y=0.1, w=0.8, h=0.8}
-}
 
 for key in pairs(resizeMappings) do
   hs.hotkey.bind(modalKey, key, function()
     local win = hs.window.focusedWindow()
     if win then win:moveToUnit(resizeMappings[key], .1) end
-  end)
-  hs.hotkey.bind(secondaryModalKey, key, function()
-    local win = hs.window.focusedWindow()
-    if win then win:moveToUnit(subtleResizeMappings[key], .1) end
   end)
 end
 
@@ -41,7 +29,7 @@ local focusKeys = {
   d='Google Chrome',
   e='Slack',
   f='iTerm',
-  g='YNAB',
+  g='Remember The Milk',
   i='Inbox',
   n='Spotify',
   o='Messenger',
@@ -49,12 +37,9 @@ local focusKeys = {
   q='Screenhero',
   r='Brave',
   s='Simulator',
-  s='Simulator',
   t='Messages',
-  v='Nylas N1',
   w='Dictionary',
-  x='Xcode',
-  z='Factory'
+  x='Xcode'
 }
 
 for key in pairs(focusKeys) do
@@ -63,8 +48,7 @@ for key in pairs(focusKeys) do
   end)
 end
 
-local superModalKey = {'ctrl', 'shift'}
-local screenMode = hs.hotkey.modal.new(superModalKey, 's')
+local screenMode = hs.hotkey.modal.new(modalKey, 'z')
 
 screenMode:bind('', 'escape', function() screenMode:exit() end)
 
