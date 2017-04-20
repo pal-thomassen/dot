@@ -2,6 +2,7 @@
 
 FILE=${1:-.}
 
+# Make sure the socket ID has no slashes, emacs does not like that.
 EMACS_SOCKET="tmux$(tmux display -p '#{client_tty}' | sed 's|/|_|g')"
 
 client () {
