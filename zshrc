@@ -1,3 +1,7 @@
+if [[ -z $TMUX ]]; then
+  tmux new-session -t main
+fi
+
 source ~/.zprezto/init.zsh
 source ~/.config/z/z.sh
 
@@ -45,3 +49,13 @@ unsetopt CORRECT
 [ -f $HOME/.tokens ] && source ~/.tokens
 
 export PATH="$HOME/.yarn/bin:$PATH"
+
+vi () {
+  FILE=${1:-.}
+
+  # Make sure the socket ID has no slashes, emacs does not like that.
+  EMACS_SOCKET="tmux$(tmux display -p '#{client_tty}' | sed 's|/|_|g')"
+
+  ls $TMPDIR/emacs$UID | grep $EMACS_SOCKET || emacs -nw --daemon="$EMACS_SOCKET" > /dev/null
+  emacsclient -nw -s "$EMACS_SOCKET" $FILE
+}
