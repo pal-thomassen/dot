@@ -26,7 +26,6 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 # eval $(gpg-agent --daemon --sh)
 
 alias subl="/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text"
-alias vi="emacsclient -nw"
 alias gti=git
 alias sll=/usr/local/Cellar/sl/5.02/bin/sl
 alias ajpex="apex --profile andrewtjoslin"

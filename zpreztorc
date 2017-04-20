@@ -8,7 +8,7 @@ if [[ -n ${EMACS} ]]; then
   zstyle ':prezto:module:terminal' window-title 'no'
   zstyle ':prezto:module:terminal' tab-title 'no'
 else
-  zstyle ':prezto:module:tmux:auto-start' local 'yes'
+  # zstyle ':prezto:module:tmux:auto-start' local 'yes'
   zstyle ':prezto:module:terminal' auto-title 'yes'
   zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
   zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
