@@ -36,6 +36,9 @@ alias ajpex="apex --profile andrewtjoslin"
 alias ezpex="apex --profile eaze"
 alias gitd='git daemon --base-path=. --export-all --enable=receive-pack --reuseaddr --informative-errors --verbose'
 
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+
 alias clocker="HOME=~/sync/andrew clocker"
 
 setopt CLOBBER
@@ -56,6 +59,6 @@ vi () {
   # Make sure the socket ID has no slashes, emacs does not like that.
   EMACS_SOCKET="tmux$(tmux display -p '#{client_tty}' | sed 's|/|_|g')"
 
-  ls $TMPDIR/emacs$UID | grep $EMACS_SOCKET || emacs -nw --daemon="$EMACS_SOCKET" > /dev/null
+  ls $TMPDIR/emacs$UID | grep -q $EMACS_SOCKET || emacs -nw --daemon="$EMACS_SOCKET"
   emacsclient -nw -s "$EMACS_SOCKET" $FILE
 }

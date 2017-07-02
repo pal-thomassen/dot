@@ -28,10 +28,31 @@ hs.crash.crashLogToNSLog = true
 -- SCREENS
 ---------------------------------------------------------
 
-local cycleScreens = hs.fnutils.cycle(hs.screen.allScreens())
+local screenMode = hs.hotkey.modal.new(hyper, 'z')
 
-hs.hotkey.bind(hyper, "`", function()
-  hs.window.focusedWindow():moveToScreen(cycleScreens():next())
+screenMode:bind('', 'escape', function() screenMode:exit() end)
+
+function screenMode:entered() hs.alert('Screen Mode') end
+
+screenMode:bind('', 'l', function()
+                  local win = hs.window.focusedWindow()
+                  if win then win:moveOneScreenEast() end
+                  screenMode:exit()
+end)
+screenMode:bind('', 'j', function()
+                  local win = hs.window.focusedWindow()
+                  if win then win:moveOneScreenSouth() end
+                  screenMode:exit()
+end)
+screenMode:bind('', 'k', function()
+                  local win = hs.window.focusedWindow()
+                  if win then win:moveOneScreenNorth() end
+                  screenMode:exit()
+end)
+screenMode:bind('', 'h' , function()
+                  local win = hs.window.focusedWindow()
+                  if win then win:moveOneScreenWest() end
+                  screenMode:exit()
 end)
 
 -- screenOrder = {
