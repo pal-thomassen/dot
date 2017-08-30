@@ -10,7 +10,6 @@ filetype off               " -  required!
   Plug 'JazzCore/ctrlp-cmatcher'
   Plug 'kien/ctrlp.vim'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'junegunn/goyo.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'bling/vim-airline'
   Plug 'luochen1990/rainbow'
@@ -27,6 +26,8 @@ filetype off               " -  required!
   Plug 'mxw/vim-jsx'
   Plug 'mattn/emmet-vim'
   Plug 'othree/html5.vim'
+  Plug 'junegunn/goyo.vim'
+  Plug 'christoomey/vim-tmux-navigator'
   call plug#end()
 " ENDPLUG
 

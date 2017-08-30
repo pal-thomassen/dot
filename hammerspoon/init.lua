@@ -86,15 +86,14 @@ end)
 -- APP HOTKEYS
 ---------------------------------------------------------
 
-local SIGNAL_CHROME_APP_NAME = 'Profile 1 bikioccmkafdpakkkcpdbppfkghcmihk'
-
 hs.hotkey.bind(hyper, "a", launchOrCycleFocus("Safari"))
 hs.hotkey.bind(hyper, "b", launchOrCycleFocus("iTunes"))
 hs.hotkey.bind(hyper, "c", launchOrCycleFocus("Sketch"))
 hs.hotkey.bind(hyper, "d", launchOrCycleFocus("Google Chrome"))
 hs.hotkey.bind(hyper, "e", launchOrCycleFocus("Slack"))
 hs.hotkey.bind(hyper, "f", launchOrCycleFocus("iTerm", "iTerm2"))
-hs.hotkey.bind(hyper, "i", launchOrCycleFocus(SIGNAL_CHROME_APP_NAME))
+hs.hotkey.bind(hyper, "g", launchOrCycleFocus("TogglDesktop"))
+hs.hotkey.bind(hyper, "i", launchOrCycleFocus("Cisco Jabber"))
 hs.hotkey.bind(hyper, "n", launchOrCycleFocus("Spotify"))
 hs.hotkey.bind(hyper, "r", launchOrCycleFocus("Brave"))
 hs.hotkey.bind(hyper, "s", launchOrCycleFocus("Simulator"))
