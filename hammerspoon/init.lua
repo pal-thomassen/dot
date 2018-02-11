@@ -1,4 +1,5 @@
 local hyper = {"ctrl", "alt", "shift"}
+local cmdHyper = {"cmd", "ctrl", "alt", "shift"}
 
 -- disable animations
 hs.window.animationDuration = 0
@@ -17,10 +18,6 @@ local grid = require "hs.grid"
 
 require "fntools"
 require "extensions"
-require "keyboard_grid"
-
-yay = ""
-boo = ""
 
 hs.crash.crashLogToNSLog = true
 
@@ -92,8 +89,8 @@ hs.hotkey.bind(hyper, "c", launchOrCycleFocus("Sketch"))
 hs.hotkey.bind(hyper, "d", launchOrCycleFocus("Google Chrome"))
 hs.hotkey.bind(hyper, "e", launchOrCycleFocus("Slack"))
 hs.hotkey.bind(hyper, "f", launchOrCycleFocus("iTerm", "iTerm2"))
-hs.hotkey.bind(hyper, "g", launchOrCycleFocus("TogglDesktop"))
-hs.hotkey.bind(hyper, "i", launchOrCycleFocus("Cisco Jabber"))
+hs.hotkey.bind(hyper, "g", launchOrCycleFocus("Todoist"))
+hs.hotkey.bind(hyper, "i", launchOrCycleFocus("Mail"))
 hs.hotkey.bind(hyper, "n", launchOrCycleFocus("Spotify"))
 hs.hotkey.bind(hyper, "r", launchOrCycleFocus("Brave"))
 hs.hotkey.bind(hyper, "s", launchOrCycleFocus("Simulator"))
@@ -102,8 +99,9 @@ hs.hotkey.bind(hyper, "u", launchOrCycleFocus("clementine"))
 hs.hotkey.bind(hyper, "w", launchOrCycleFocus("Dictionary"))
 hs.hotkey.bind(hyper, "x", launchOrCycleFocus("XCode"))
 hs.hotkey.bind(hyper, "o", launchOrCycleFocus("Finder"))
+hs.hotkey.bind(hyper, "`", function() os.execute( "open ~" ) end )
 
-hs.hotkey.bind(hyper, "m", fullScreenCurrent)
+-- hs.hotkey.bind(hyper, "m", fullScreenCurrent)
 -- hs.hotkey.bind(hyper, "D", screenToRight)
 -- hs.hotkey.bind(hyper, "A", screenToLeft)
 
@@ -133,6 +131,9 @@ end)
 
 -- # RESIZE
 
+---------------------------------------------------------
+-- KEYBOARD SIZE MANIPULATION
+---------------------------------------------------------
 -- HJKL Resize
 local resizeMappings = {
   h=hs.layout.left50,
@@ -144,11 +145,41 @@ local resizeMappings = {
 
 for key in pairs(resizeMappings) do
   hs.hotkey.bind(hyper, key, function()
-  local win = hs.window.focusedWindow()
-  if win then win:moveToUnit(resizeMappings[key], .1) end
+    local win = hs.window.focusedWindow()
+    if win then win:moveToUnit(resizeMappings[key], .1) end
   end)
 end
 
+local rightMode = hs.hotkey.modal.new(cmdHyper, 'l')
+rightMode:bind('', 'escape', function() rightMode:exit() end)
+rightMode:bind(cmdHyper, 'j', function()
+    local win = hs.window.focusedWindow()
+    if win then win:moveToUnit({x=0.5, y=0.5, w=0.5, h=0.5}, .1) end
+    rightMode:exit()
+end)
+rightMode:bind(cmdHyper, 'k', function()
+                 local win = hs.window.focusedWindow()
+                 if win then win:moveToUnit({x=0.5, y=0, w=0.5, h=0.5}, .1) end
+                 rightMode:exit()
+end)
+
+local leftMode = hs.hotkey.modal.new(cmdHyper, 'h')
+leftMode:bind('', 'escape', function() leftMode:exit() end)
+leftMode:bind(cmdHyper, 'j', function()
+                 local win = hs.window.focusedWindow()
+                 if win then win:moveToUnit({x=0, y=0.5, w=0.5, h=0.5}, .1) end
+                 leftMode:exit()
+end)
+leftMode:bind(cmdHyper, 'k', function()
+                 local win = hs.window.focusedWindow()
+                 if win then win:moveToUnit({x=0, y=0, w=0.5, h=0.5}, .1) end
+                 leftMode:exit()
+end)
+
+hs.hotkey.bind(cmdHyper, 'm', function()
+    local win = hs.window.focusedWindow()
+    if win then win:moveToUnit({x=0.15, y=0.15, w=0.7, h=0.7}, .1) end
+end)
 
 ---------------------------------------------------------
 -- MISC

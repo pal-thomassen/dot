@@ -1,5 +1,5 @@
 if [[ -z $TMUX ]]; then
-  tmux new-session -t main
+  tmux attach || tmux new-session -s main
 fi
 
 source ~/.zprezto/init.zsh
@@ -36,9 +36,6 @@ alias sll=/usr/local/Cellar/sl/5.02/bin/sl
 alias ajpex="apex --profile andrewtjoslin"
 alias ezpex="apex --profile eaze"
 alias gitd='git daemon --base-path=. --export-all --enable=receive-pack --reuseaddr --informative-errors --verbose'
-
-alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
-alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
 
 alias clocker="HOME=~/sync/andrew clocker"
 
